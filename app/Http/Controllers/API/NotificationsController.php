@@ -21,12 +21,12 @@ class NotificationsController extends Controller
     {
         //
     }
-    public function notificationsRegiter(){
-        $user=Auth::user();
-       $notifications= Auth::user()->load('notifications');
+    // public function notificationsRegiter(){
+    //     $user=Auth::user();
+    //    $notifications= Auth::user()->load('notifications');
 
-       return ['notifications' =>$notifications,'user' => $user];
-    }
+    //    return ['notifications' =>$notifications,'user' => $user];
+    // }
      public function notifications(){
          $user=Auth::user();
         $notifications= Auth::user()->load('notifications');

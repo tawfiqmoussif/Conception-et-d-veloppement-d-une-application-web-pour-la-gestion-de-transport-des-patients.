@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use App\User;
 
-class NotificationRegistration extends Notification implements ShouldQueue
+class NotificationRegistration extends Notification 
 {
     use Queueable;
     public $user;

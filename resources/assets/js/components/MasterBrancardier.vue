@@ -33,7 +33,7 @@
           <span v-show="unreadNotifications.length!=0" class="badge badge-danger navbar-badge">{{unreadNotifications.length}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">{{unreadNotifications.length}} Notifications</span>
+          <span class="dropdown-item dropdown-header">{{notifications.length}} Notifications</span>
           <div class="dropdown-divider"></div>
           <div v-for="notification in notifications" :key="i">
            <router-link to="/demandesBrancardier" class="dropdown-item">
@@ -68,6 +68,7 @@
   <!-- /.navbar -->
 </template>
 <script>
+import VueTimers from 'vue-timers'
 export default {
   resolve: {
     alias: {
@@ -77,7 +78,8 @@ export default {
   data() {
     return {
       notifications: [],
-      user: ""
+      user: "",
+      timer: '',
     };
   },
    props: ['userid'],
@@ -106,12 +108,17 @@ export default {
             (this.user = data.user)
           )
         );
-    }
+    },
   },
   created() {
     //this.notifications=window.user.demande.notifications;
     //console.log('user',window.user)
     this.loadNotifications();
+    this.$options.interval = setInterval(this.loadNotifications, 1000)
+    console.log(this.$options.interval !== null)  
+     this.fetchEventsList();
+        this.timer = setInterval(this.fetchEventsList, 1000)
+
   },
   mounted() {
     // Do something useful with the data in the template
@@ -120,7 +127,10 @@ export default {
       .listen('NewDemande',(e) => {
         console.log(e.demande) 
       })
-  }
+  },
+  beforeDestroy () {
+      clearInterval(this.$options.interval)
+    }
 };
 </script>
 

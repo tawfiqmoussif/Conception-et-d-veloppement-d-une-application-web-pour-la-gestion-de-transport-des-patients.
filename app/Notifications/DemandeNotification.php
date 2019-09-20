@@ -26,6 +26,9 @@ class DemandeNotification extends Notification
     public function __construct($demande)
     {
         $this->demande=$demande;     
+        $this->demandeur = Demande::find($demande->id)->demandeur()->get();
+        $this->serviceDestination = Demande::find($demande->id)->service_destination()->get();
+        $this->serviceSource = Demande::find($demande->id)->service_source()->get();
     }
 
     /**

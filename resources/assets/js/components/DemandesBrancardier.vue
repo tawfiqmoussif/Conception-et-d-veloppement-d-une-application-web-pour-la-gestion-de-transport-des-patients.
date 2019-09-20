@@ -518,11 +518,11 @@ $('#detailsModal').modal('show');
             }
         },
         created(){
-           Fire.$on('ChangeDemandes',()=>
+          /* Fire.$on('ChangeDemandes',()=>
            {
              this.refresh();
              console.log("Refresh event !");
-           });
+           });*/
            this.interval = setInterval(() => this.listener(), 1000);
          
         },

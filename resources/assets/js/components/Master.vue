@@ -130,7 +130,7 @@ export default {
        
     },
     loadNotifications(){
-      axios.get('api/notificationsRegiter').then(({data})=>(
+      axios.get('api/notifications').then(({data})=>(
          this.notifications=data.notifications.notifications,
          this.user=data.user
      ));

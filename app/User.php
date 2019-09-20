@@ -25,7 +25,7 @@ class User extends Authenticatable
     }
 
     public function services(){
-        return $this->belongsToMany('App\Service')
+        return $this->belongsToMany('App\Service','service_user','user_id','service_id')
         ->withPivot('date_debut', 'date_fin','weekend')
     	->withTimestamps();
     }

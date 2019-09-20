@@ -59,7 +59,7 @@ class DeclarerDemandeController extends Controller
          $brancardiers=User::all()->filter(function($user){
              return $user->hasRole('brancardier');//were id service = service source 
          });
-        $brancardiers=User::find(2)->get();
+        //$brancardiers=User::find(2)->get();
         Notification::send($brancardiers,new DemandeNotification(Demande::latest('id')->first()));
     
     }
