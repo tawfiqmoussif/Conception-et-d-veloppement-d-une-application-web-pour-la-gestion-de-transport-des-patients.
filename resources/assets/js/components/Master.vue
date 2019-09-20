@@ -99,6 +99,7 @@
 
 </template>
 <script>
+import VueTimers from 'vue-timers'
 export default {
      resolve: {
     alias: {
@@ -140,6 +141,8 @@ export default {
   created(){
     //this.notifications=window.user.demande.notifications;
     //console.log('user',window.user)
+     this.$options.interval = setInterval(this.loadNotifications, 1000)
+    console.log(this.$options.interval !== null)  
     this.loadNotifications();
   /*  Echo.private(`App.User.`+this.user.id)
     .notification((notification) => {
@@ -154,6 +157,9 @@ export default {
       //   .notification((notification) => {
       //       console.log(notification);
       //   });
+    },
+    beforeDestroy () {
+      clearInterval(this.$options.interval)
     }
 }
 
